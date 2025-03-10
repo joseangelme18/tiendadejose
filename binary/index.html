@@ -16,6 +16,8 @@
         <a href="index.html" class="logo"><strong>Tienda de José</strong></a>
         <nav>
             <a href="#menu">Menú</a>
+            <!-- Botón para cambiar el modo -->
+            <button id="mode-toggle" class="mode-toggle">🌙</button>
         </nav>
     </header>
 
@@ -154,6 +156,33 @@
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Script para el modo oscuro -->
+    <script>
+        const modeToggle = document.getElementById("mode-toggle");
+        const body = document.body;
+
+        // Cargar modo preferido del usuario
+        const preferredMode = localStorage.getItem("mode") || "light";
+        if (preferredMode === "dark") {
+            body.classList.add("dark-mode");
+            modeToggle.textContent = "🌞";  // Cambiar ícono a sol para modo oscuro
+        }
+
+        // Cambiar el modo
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+
+            // Guardar preferencia en localStorage
+            if (body.classList.contains("dark-mode")) {
+                localStorage.setItem("mode", "dark");
+                modeToggle.textContent = "🌞";  // Cambiar ícono a sol
+            } else {
+                localStorage.setItem("mode", "light");
+                modeToggle.textContent = "🌙";  // Cambiar ícono a luna
+            }
+        });
+    </script>
 
 </body>
 
